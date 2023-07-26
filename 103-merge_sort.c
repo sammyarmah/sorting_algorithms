@@ -26,10 +26,13 @@ void merge_subarray(int *subarray, int *buffer, size_t front_i, size_t mid_i,
 
 	for (i = front_i, j = mid_i; i < mid_i && j < back_i; k++)
 		buffer[k] = (subarray[i] < subarray[j]) ? subarray[i++] : subarray[j++];
-	for (; i < mid_i; i++)
-		buffer[k++] = subarray[i];
-	for (; j < back_i; j++)
-		buffer[k++] = subarray[j];
+
+	while (i < mid_i)
+		buffer[k++] = subarray[i++];
+			
+	while (j < back_i)
+		buffer[k++] = subarray[j++];
+
 	for (i = front_i, k = 0; i < back_i; i++)
 		subarray[i] = buffer[k++];
 
